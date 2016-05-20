@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
-  get '/', to: 'tests#index'
-  
+  resources :characters
+  root to: 'characters#index'
+
 end
