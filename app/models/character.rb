@@ -10,12 +10,13 @@ class Character < ActiveRecord::Base
 
   def self.sortByValue(value)
     sortedHash = {}
-    sorted = characters.sort_by { |name, data| data[value] }.reverse
-    sorted.each do |name, data|
+    sortedData = characters.sort_by { |name, data| data[value] }.reverse
+    sortedData.each do |name, data|
       sortedHash[name] = data[value]
     end
     sortedHash
   end
+
 
 
 end
