@@ -5,3 +5,20 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+namesArray = ["iron man", "spider-man", "thor", "captain america", "hulk"]
+
+namesArray.each do |name|
+
+  client = Adapters::MarvelApiConnection.new
+  result = client.query(name)
+  characterData = result["data"]["results"].first
+
+  character_id = client.characterID(name)
+  comics = characterData["comics"]["available"]
+  series = characterData["series"]["available"]
+  stories = characterData["stories"]["available"]
+
+  Character.create({name: name, character_id: character_id, comics: comics, series: series, stories: stories})
+  
+end
