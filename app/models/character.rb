@@ -45,7 +45,17 @@ class Character < ActiveRecord::Base
     end
   end
 
+  def imageUrl(character)
+    "#{character.thumbnail_path}/standard_small.jpg"
+  end
 
+  def capitalize(character)
+    binding.pry
+    self.name.to_s.split('-').map(&:capitalize).join('-')
+    self.name.to_s.split.map(&:capitalize).join(' ')
+  end
+
+# not needed:
 
   def self.comicsHash
     {"spider-man":2613, "iron man":1986, "captain america":1445, "hulk":1315, "thor":1254}
@@ -58,5 +68,8 @@ class Character < ActiveRecord::Base
   def self.storiesHash
     {"spider-man":4223, "iron man":2911, "captain america":2360, "hulk":1988, "thor":1970}
   end
+
+# : not needed
+
 
 end

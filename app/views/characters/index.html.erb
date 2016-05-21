@@ -9,6 +9,8 @@
 </p>
 </div>
 
+<hr>
+
 <div>
 <h4>(2) Characters Sorted by Popularity</h4>
 
@@ -24,11 +26,14 @@
       </thead>
       <tbody>
         <% i = 0 %>
-        <% Character.sortByValue(:comics).each do |name, number| %>
+<!-- CHANGE BACK TO REAL METHOD! -->
+        <% Character.comicsHash.each do |name, number| %>
           <% i+= 1 %>
           <tr>
             <td><%= i %></td>
-            <td><%= name %></td>
+            <td>
+              <%= name.capitalize %>
+            </td>
             <td><%= number %></td>
           </tr>
         <% end %>
@@ -48,7 +53,8 @@
       </thead>
       <tbody>
         <% i = 0 %>
-        <% Character.sortByValue(:series).each do |name, number| %>
+<!-- CHANGE BACK TO REAL METHOD! -->
+        <% Character.seriesHash.each do |name, number| %>
           <% i+= 1 %>
           <tr>
             <td><%= i %></td>
@@ -72,7 +78,8 @@
       </thead>
       <tbody>
         <% i = 0 %>
-        <% Character.sortByValue(:stories).each do |name, number| %>
+<!-- CHANGE BACK TO REAL METHOD! -->
+        <% Character.storiesHash.each do |name, number| %>
           <% i+= 1 %>
           <tr>
             <td><%= i %></td>
@@ -86,9 +93,16 @@
 
 </div>
 
+
+<hr>
+
 <div>
 <h4>(3) Events in common</h4>
-<p>
-  ["Acts of Vengeance!", "Avengers VS X-Men", "Chaos War", "Fear Itself", "Maximum Security", "Onslaught", "Secret Invasion", "Secret Wars", "Secret Wars II", "Shattered Heroes"]
-</p>
+
+<ul class="list-group">
+  <% Character.commonEvents.each do |event| %>
+    <li class="list-group-item"><%= event %></li>
+  <% end %>
+</ul>
+
 </div>
