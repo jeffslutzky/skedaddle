@@ -46,4 +46,17 @@ class Character < ActiveRecord::Base
   end
 
 
+
+  def self.comicsHash
+    {"spider-man":2613, "iron man":1986, "captain america":1445, "hulk":1315, "thor":1254}
+  end
+
+  def self.seriesHash
+    {"spider-man":545, "iron man":451, "captain america":395, "hulk":319, "thor":309}
+  end
+
+  def self.storiesHash
+    {"spider-man":4223, "iron man":2911, "captain america":2360, "hulk":1988, "thor":1970}
+  end
+
 end
