@@ -20,5 +20,14 @@ namesArray.each do |name|
   stories = characterData["stories"]["available"]
 
   Character.create({name: name, character_id: character_id, comics: comics, series: series, stories: stories})
-  
+
+  # eventsArray = []
+  # events = client.eventsQuery(name)["data"]["results"]
+  # events.each do |event|
+  #   eventsArray << event["title"]
+  # end
+  #
+  # Character.create({ name: name, character_id: character_id, comics: comics, series: series, stories: stories, events: eventsArray })
+
+
 end
