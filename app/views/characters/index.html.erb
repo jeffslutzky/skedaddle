@@ -1,5 +1,5 @@
 <div class="jumbotron">
-  <h1><img src="<%= image_path('Marvel-logo (1).png')%>"> Comics Data</h1>
+  <h1><img src="<%= image_path('Marvel-logo.png')%>"> Comics Data</h1>
 </div>
 
 <div>
@@ -27,12 +27,14 @@
       <tbody>
         <% i = 0 %>
 <!-- CHANGE BACK TO REAL METHOD! -->
-        <% Character.comicsHash.each do |name, number| %>
-          <% i+= 1 %>
+        <% Character.sortByValue(:comics).each do |name, number| %>
+          <% i+=1 %>
           <tr>
             <td><%= i %></td>
             <td>
-              <%= name.capitalize %>
+              <%= name.split.map(&:capitalize).join(' ').split('-').map(&:titleize).join('-') %>
+              <br />
+              <img src="<%= image_path('Marvel-logo.png') %>">
             </td>
             <td><%= number %></td>
           </tr>

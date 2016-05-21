@@ -3,11 +3,7 @@ class Character < ActiveRecord::Base
   def self.charactersHash
     characters = {}
     Character.all.each do |character|
-
-      characters[character.name] = {character_id: character.character_id, comics: character.comics, series: character.series, stories: character.stories, events: character.characterEventsArray }
-
-      # characters[character.name] = {character_id: character.character_id, comics: character.comics, series: character.series, stories: character.stories, events: character.eventsArray }
-
+      characters[character.name] = {character_id: character.character_id, comics: character.comics, series: character.series, stories: character.stories, events: character.characterEventsArray, thumbnail_path: character.thumbnail_path }
     end
     characters
   end
@@ -49,11 +45,6 @@ class Character < ActiveRecord::Base
     "#{character.thumbnail_path}/standard_small.jpg"
   end
 
-  def capitalize(character)
-    binding.pry
-    self.name.to_s.split('-').map(&:capitalize).join('-')
-    self.name.to_s.split.map(&:capitalize).join(' ')
-  end
 
 # not needed:
 
