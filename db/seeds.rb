@@ -14,21 +14,12 @@ namesArray.each do |name|
   result = client.query(name)
   characterData = result["data"]["results"].first
 
-  character_id = client.characterID(name)
   comics = characterData["comics"]["available"]
   series = characterData["series"]["available"]
   stories = characterData["stories"]["available"]
-  thumbnail_path = characterData["thumbnail"]["path"]
+  thumbnailPath = characterData["thumbnail"]["path"]
+  resourceURI = characterData["resourceURI"]
 
-  Character.create({name: name, character_id: character_id, comics: comics, series: series, stories: stories, thumbnail_path: thumbnail_path})
-
-  # eventsArray = []
-  # events = client.eventsQuery(name)["data"]["results"]
-  # events.each do |event|
-  #   eventsArray << event["title"]
-  # end
-  #
-  # Character.create({ name: name, character_id: character_id, comics: comics, series: series, stories: stories, events: eventsArray })
-
+  Character.create({ name: name, comics: comics, series: series, stories: stories, thumbnail_path: thumbnailPath, resource_uri: resourceURI })
 
 end

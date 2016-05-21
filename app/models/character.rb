@@ -3,7 +3,7 @@ class Character < ActiveRecord::Base
   def self.charactersHash
     characters = {}
     Character.all.each do |character|
-      characters[character.name] = {character_id: character.character_id, comics: character.comics, series: character.series, stories: character.stories, events: character.characterEventsArray, thumbnail_path: character.thumbnail_path }
+      characters[character.name] = { comics: character.comics, series: character.series, stories: character.stories, events: character.characterEventsArray, thumbnailPath: character.thumbnail_path, resourceURI: character.resource_uri }
     end
     characters
   end
