@@ -3,7 +3,7 @@ class Character < ActiveRecord::Base
   def self.charactersHash
     characters = {}
     Character.all.each do |character|
-      characters[character.name] = { comics: character.comics, series: character.series, stories: character.stories, events: character.characterEventsArray, thumbnailPath: character.thumbnail_path, resourceURI: character.resource_uri }
+      characters[character.name] = {characterID: character.character_id, comics: character.comics, series: character.series, stories: character.stories, events: character.characterEventsArray, thumbnailPath: character.thumbnail_path }
     end
     characters
   end
@@ -12,7 +12,9 @@ class Character < ActiveRecord::Base
     sortedHash = {}
     sortedData = charactersHash.sort_by { |name, data| data[value] }.reverse
     sortedData.each do |name, data|
-      sortedHash[name] = data[value]
+      sortedHash[name] = {}
+      sortedHash[name]["value"] = data[value]
+      sortedHash[name]["imageURL"] = "#{data[:thumbnailPath]}/standard_medium.jpg"
     end
     sortedHash
   end

@@ -14,12 +14,12 @@ namesArray.each do |name|
   result = client.query(name)
   characterData = result["data"]["results"].first
 
+  characterID = client.characterID(name)
   comics = characterData["comics"]["available"]
   series = characterData["series"]["available"]
   stories = characterData["stories"]["available"]
   thumbnailPath = characterData["thumbnail"]["path"]
-  resourceURI = characterData["resourceURI"]
 
-  Character.create({ name: name, comics: comics, series: series, stories: stories, thumbnail_path: thumbnailPath, resource_uri: resourceURI })
+  Character.create({name: name, character_id: characterID, comics: comics, series: series, stories: stories, thumbnail_path: thumbnailPath})
 
 end

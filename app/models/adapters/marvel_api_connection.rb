@@ -44,9 +44,5 @@ module Adapters
       connection.get(self.eventsUrl(character))
     end
 
-# client = Adapters::MarvelApiConnection.new
-# result = client.query(character)
-# result["data"]["results"].first   [ gives a hash ]
-
   end
 end

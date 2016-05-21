@@ -5,7 +5,7 @@
 <div>
 <h4>(1) Hash of Character Data</h4>
 <p>
-  {"iron man"=&gt;{:character_id=&gt;1009368, :comics=&gt;1986, :series=&gt;451, :stories=&gt;2911, :events=&gt;["Acts of Vengeance!", "Age of X", "Armor Wars", "Atlantis Attacks", "Avengers Disassembled", "Avengers VS X-Men", "Chaos War", "Civil War", "Crossing", "Dark Reign", "Enemy of the State", "Fatal Attractions", "Fear Itself", "House of M", "Infinity War", "Initiative", "Maximum Security", "Onslaught", "Secret Invasion", "Secret Wars", "Secret Wars II", "Shattered Heroes", "Spider-Island", "World War Hulk"]}, "spider-man"=&gt;{:character_id=&gt;1009610, :comics=&gt;2613, :series=&gt;545, :stories=&gt;4223, :events=&gt;["Acts of Vengeance!", "Age of Ultron", "Atlantis Attacks", "Avengers Disassembled", "Avengers VS X-Men", "Chaos War", "Civil War", "Dark Reign", "Days of Future Present", "Evolutionary War", "Fear Itself", "House of M", "Inferno", "Infinity Gauntlet", "Initiative", "Kraven's Last Hunt", "Maximum Carnage", "Maximum Security", "Onslaught", "Other - Evolve or Die", "Secret Invasion", "Secret Wars", "Secret Wars II", "Shadowland", "Shattered Heroes", "Siege", "Siege of Darkness", "Spider-Island", "World War Hulk", "World War Hulks"]}, "thor"=&gt;{:character_id=&gt;1009664, :comics=&gt;1254, :series=&gt;309, :stories=&gt;1970, :events=&gt;["Acts of Vengeance!", "Atlantis Attacks", "Avengers Disassembled", "Avengers VS X-Men", "Blood and Thunder", "Chaos War", "Civil War", "Dark Reign", "Evolutionary War", "Fear Itself", "Infinity Gauntlet", "Infinity War", "Maximum Security", "Mutant Massacre", "Onslaught", "Secret Invasion", "Secret Wars", "Secret Wars II", "Shattered Heroes", "Siege", "World War Hulks"]}, "captain america"=&gt;{:character_id=&gt;1009220, :comics=&gt;1445, :series=&gt;395, :stories=&gt;2360, :events=&gt;["Acts of Vengeance!", "Age of X", "Armor Wars", "Avengers Disassembled", "Avengers VS X-Men", "Chaos War", "Civil War", "Fall of the Mutants", "Fear Itself", "House of M", "Infinity Gauntlet", "Infinity War", "Maximum Security", "Onslaught", "Secret Invasion", "Secret Wars", "Secret Wars II", "Shattered Heroes", "Siege"]}, "hulk"=&gt;{:character_id=&gt;1009351, :comics=&gt;1315, :series=&gt;319, :stories=&gt;1988, :events=&gt;["Acts of Vengeance!", "Age of X", "Avengers VS X-Men", "Chaos War", "Dark Reign", "Fall of the Hulks", "Fall of the Mutants", "Fear Itself", "House of M", "Infinity Gauntlet", "Infinity War", "Initiative", "Marvel NOW!", "Maximum Security", "Onslaught", "Planet Hulk", "Realm of Kings", "Secret Invasion", "Secret Wars", "Secret Wars II", "Shattered Heroes", "Spider-Island", "World War Hulk", "World War Hulks"]}}
+  <%= Character.charactersHash %>
 </p>
 </div>
 
@@ -26,17 +26,16 @@
       </thead>
       <tbody>
         <% i = 0 %>
-<!-- CHANGE BACK TO REAL METHOD! -->
-        <% Character.sortByValue(:comics).each do |name, number| %>
+        <% Character.sortByValue(:comics).each do |name, data| %>
           <% i+=1 %>
           <tr>
             <td><%= i %></td>
             <td>
               <%= name.split.map(&:capitalize).join(' ').split('-').map(&:titleize).join('-') %>
               <br />
-              <img src="<%= image_path('Marvel-logo.png') %>">
+              <img src="<%= data["imageURL"] %>">
             </td>
-            <td><%= number %></td>
+            <td><%= data["value"] %></td>
           </tr>
         <% end %>
       </tbody>
@@ -55,13 +54,16 @@
       </thead>
       <tbody>
         <% i = 0 %>
-<!-- CHANGE BACK TO REAL METHOD! -->
-        <% Character.seriesHash.each do |name, number| %>
-          <% i+= 1 %>
+        <% Character.sortByValue(:series).each do |name, data| %>
+          <% i+=1 %>
           <tr>
             <td><%= i %></td>
-            <td><%= name %></td>
-            <td><%= number %></td>
+            <td>
+              <%= name.split.map(&:capitalize).join(' ').split('-').map(&:titleize).join('-') %>
+              <br />
+              <img src="<%= data["imageURL"] %>">
+            </td>
+            <td><%= data["value"] %></td>
           </tr>
         <% end %>
       </tbody>
@@ -80,13 +82,16 @@
       </thead>
       <tbody>
         <% i = 0 %>
-<!-- CHANGE BACK TO REAL METHOD! -->
-        <% Character.storiesHash.each do |name, number| %>
-          <% i+= 1 %>
+        <% Character.sortByValue(:stories).each do |name, data| %>
+          <% i+=1 %>
           <tr>
             <td><%= i %></td>
-            <td><%= name %></td>
-            <td><%= number %></td>
+            <td>
+              <%= name.split.map(&:capitalize).join(' ').split('-').map(&:titleize).join('-') %>
+              <br />
+              <img src="<%= data["imageURL"] %>">
+            </td>
+            <td><%= data["value"] %></td>
           </tr>
         <% end %>
       </tbody>
@@ -94,7 +99,6 @@
   </div>
 
 </div>
-
 
 <hr>
 
