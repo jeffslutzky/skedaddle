@@ -16,7 +16,7 @@
           <td><%= i %></td>
           <td>
             <%= link_to data["info"] do %>
-              <%= name.split.map(&:capitalize).join(' ').split('-').map(&:titleize).join('-') %><br />
+              <%= name %><br />
               <img src="<%= data["imageURL"] %>">
             <% end %>
           </td>

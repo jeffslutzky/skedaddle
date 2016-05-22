@@ -14,9 +14,9 @@
 <div>
 <h4>(2) Characters Sorted by Popularity</h4>
 
-  <% hash = {"comics": :comics, "series": :series, "stories": :stories} %>
-  <% hash.each do |key, value| %>
-    <%= render partial: "sorted", locals: { :property => key, :value => value} %>
+  <% criteria = ["comics", "series", "stories"] %>
+  <% criteria.each do |item| %>
+    <%= render partial: "sorted", locals: { :property => item, :value => item.to_sym} %>
   <% end %>
 
 <hr>
