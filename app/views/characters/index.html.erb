@@ -3,21 +3,19 @@
 </div>
 
 <div>
-<h4>(1) Hash of Character Data</h4>
-<p>
+  <h4>(1) Hash of Character Data</h4>
   <%= Character.charactersHash %>
-</p>
 </div>
 
 <hr>
 
 <div>
-<h4>(2) Characters Sorted by Popularity</h4>
-
+  <h4>(2) Characters Sorted by Popularity</h4>
   <% criteria = ["comics", "series", "stories"] %>
   <% criteria.each do |item| %>
     <%= render partial: "sorted", locals: { :property => item, :value => item.to_sym} %>
   <% end %>
+</div>
 
 <hr>
 
