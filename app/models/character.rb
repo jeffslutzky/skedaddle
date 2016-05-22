@@ -8,7 +8,7 @@ class Character < ActiveRecord::Base
     characters
   end
 
-  def self.sortByValue(value)
+  def self.sortedByValue(value)
     sortedHash = {}
     sortedData = charactersHash.sort_by { |name, data| data[value] }.reverse
     sortedData.each do |name, data|
@@ -21,11 +21,11 @@ class Character < ActiveRecord::Base
   end
 
   def self.allEvents
-    arrayOfArrays = []
+    allEventsArray = []
     charactersHash.each do |character|
-      arrayOfArrays << character.last[:events]
+      allEventsArray << character.last[:events]
     end
-    arrayOfArrays
+    allEventsArray
   end
 
   def self.commonEvents

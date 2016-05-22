@@ -10,14 +10,15 @@
     </thead>
     <tbody>
       <% i = 0 %>
-      <% Character.sortByValue(:property).each do |name, data| %>
+      <% Character.sortedByValue(value).each do |name, data| %>
         <% i+=1 %>
         <tr>
           <td><%= i %></td>
           <td>
-            <%= name.split.map(&:capitalize).join(' ').split('-').map(&:titleize).join('-') %>
-            <br />
-            <img src="<%= data["imageURL"] %>">
+            <%= link_to data["info"] do %>
+              <%= name.split.map(&:capitalize).join(' ').split('-').map(&:titleize).join('-') %><br />
+              <img src="<%= data["imageURL"] %>">
+            <% end %>
           </td>
           <td><%= data["value"] %></td>
         </tr>
