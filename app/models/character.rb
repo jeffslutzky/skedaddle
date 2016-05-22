@@ -3,7 +3,7 @@ class Character < ActiveRecord::Base
   def self.charactersHash
     characters = {}
     Character.all.each do |character|
-      characters[character.name] = {characterID: character.character_id, comics: character.comics, series: character.series, stories: character.stories, events: character.characterEventsArray, thumbnailPath: character.thumbnail_path, url: character.url }
+      characters[character.name] = {characterID: character.character_id, comics: character.comics, series: character.series, stories: character.stories, events: character.characterEventsArray, thumbnailPath: character.thumbnail_path, info: character.url }
     end
     characters
   end
@@ -15,6 +15,7 @@ class Character < ActiveRecord::Base
       sortedHash[name] = {}
       sortedHash[name]["value"] = data[value]
       sortedHash[name]["imageURL"] = "#{data[:thumbnailPath]}/standard_medium.jpg"
+      sortedHash[name]["info"] = data[:info]
     end
     sortedHash
   end
@@ -34,6 +35,7 @@ class Character < ActiveRecord::Base
   def self.chartData
     chartHash = {}
     charactersHash.each do |name, data|
+      name = name.split.map(&:capitalize).join(' ').split('-').map(&:titleize).join('-')
       chartHash[name] = data[:series]
     end
     chartHash

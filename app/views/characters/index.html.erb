@@ -31,11 +31,10 @@
           <tr>
             <td><%= i %></td>
             <td>
-
-              <%= link_to name.split.map(&:capitalize).join(' ').split('-').map(&:titleize).join('-'), "http://cnn.com" %>
-
-              <br />
-              <img src="<%= data["imageURL"] %>">
+              <%= link_to data["info"] do %>
+                <%= name.split.map(&:capitalize).join(' ').split('-').map(&:titleize).join('-') %><br />
+                <img src="<%= data["imageURL"] %>">
+              <% end %>
             </td>
             <td><%= data["value"] %></td>
           </tr>
@@ -61,9 +60,10 @@
           <tr>
             <td><%= i %></td>
             <td>
-              <%= name.split.map(&:capitalize).join(' ').split('-').map(&:titleize).join('-') %>
-              <br />
-              <img src="<%= data["imageURL"] %>">
+              <%= link_to data["info"] do %>
+                <%= name.split.map(&:capitalize).join(' ').split('-').map(&:titleize).join('-') %><br />
+                <img src="<%= data["imageURL"] %>">
+              <% end %>
             </td>
             <td><%= data["value"] %></td>
           </tr>
@@ -89,9 +89,10 @@
           <tr>
             <td><%= i %></td>
             <td>
-              <%= name.split.map(&:capitalize).join(' ').split('-').map(&:titleize).join('-') %>
-              <br />
-              <img src="<%= data["imageURL"] %>">
+              <%= link_to data["info"] do %>
+                <%= name.split.map(&:capitalize).join(' ').split('-').map(&:titleize).join('-') %><br />
+                <img src="<%= data["imageURL"] %>">
+              <% end %>
             </td>
             <td><%= data["value"] %></td>
           </tr>
