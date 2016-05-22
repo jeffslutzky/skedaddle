@@ -1,0 +1,27 @@
+<div class="panel panel-default">
+  <div class="panel-heading">By <%= property %></div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Character</th>
+        <th>Number of <%= property %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% i = 0 %>
+      <% Character.sortByValue(:property).each do |name, data| %>
+        <% i+=1 %>
+        <tr>
+          <td><%= i %></td>
+          <td>
+            <%= name.split.map(&:capitalize).join(' ').split('-').map(&:titleize).join('-') %>
+            <br />
+            <img src="<%= data["imageURL"] %>">
+          </td>
+          <td><%= data["value"] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+ </table>
+</div>

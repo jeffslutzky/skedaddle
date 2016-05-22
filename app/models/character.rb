@@ -8,6 +8,15 @@ class Character < ActiveRecord::Base
     characters
   end
 
+  def self.chartData
+    chartHash = {}
+    charactersHash.each do |name, data|
+      chartHash[name] = data[:series]
+    end
+    chartHash
+  end
+
+
   def self.sortByValue(value)
     sortedHash = {}
     sortedData = charactersHash.sort_by { |name, data| data[value] }.reverse
@@ -49,7 +58,6 @@ class Character < ActiveRecord::Base
 
 
 # not needed:
-
   def self.comicsHash
     {"spider-man":2613, "iron man":1986, "captain america":1445, "hulk":1315, "thor":1254}
   end
@@ -61,8 +69,7 @@ class Character < ActiveRecord::Base
   def self.storiesHash
     {"spider-man":4223, "iron man":2911, "captain america":2360, "hulk":1988, "thor":1970}
   end
-
-# : not needed
+# : not needed ^ ^ ^ ^ ^
 
 
 end
