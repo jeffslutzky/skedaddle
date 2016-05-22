@@ -31,7 +31,9 @@
           <tr>
             <td><%= i %></td>
             <td>
-              <%= name.split.map(&:capitalize).join(' ').split('-').map(&:titleize).join('-') %>
+
+              <%= link_to name.split.map(&:capitalize).join(' ').split('-').map(&:titleize).join('-'), "http://cnn.com" %>
+
               <br />
               <img src="<%= data["imageURL"] %>">
             </td>

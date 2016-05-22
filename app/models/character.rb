@@ -3,19 +3,10 @@ class Character < ActiveRecord::Base
   def self.charactersHash
     characters = {}
     Character.all.each do |character|
-      characters[character.name] = {characterID: character.character_id, comics: character.comics, series: character.series, stories: character.stories, events: character.characterEventsArray, thumbnailPath: character.thumbnail_path }
+      characters[character.name] = {characterID: character.character_id, comics: character.comics, series: character.series, stories: character.stories, events: character.characterEventsArray, thumbnailPath: character.thumbnail_path, url: character.url }
     end
     characters
   end
-
-  def self.chartData
-    chartHash = {}
-    charactersHash.each do |name, data|
-      chartHash[name] = data[:series]
-    end
-    chartHash
-  end
-
 
   def self.sortByValue(value)
     sortedHash = {}
@@ -40,6 +31,14 @@ class Character < ActiveRecord::Base
     allEvents.inject(:&)
   end
 
+  def self.chartData
+    chartHash = {}
+    charactersHash.each do |name, data|
+      chartHash[name] = data[:series]
+    end
+    chartHash
+  end
+
   def getCharacterEvents
     client = Adapters::MarvelApiConnection.new
     client.eventsQuery(self.name)["data"]["results"]
@@ -55,21 +54,5 @@ class Character < ActiveRecord::Base
   def imageUrl(character)
     "#{character.thumbnail_path}/standard_small.jpg"
   end
-
-
-# not needed:
-  def self.comicsHash
-    {"spider-man":2613, "iron man":1986, "captain america":1445, "hulk":1315, "thor":1254}
-  end
-
-  def self.seriesHash
-    {"spider-man":545, "iron man":451, "captain america":395, "hulk":319, "thor":309}
-  end
-
-  def self.storiesHash
-    {"spider-man":4223, "iron man":2911, "captain america":2360, "hulk":1988, "thor":1970}
-  end
-# : not needed ^ ^ ^ ^ ^
-
 
 end

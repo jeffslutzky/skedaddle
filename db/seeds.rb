@@ -19,7 +19,8 @@ namesArray.each do |name|
   series = characterData["series"]["available"]
   stories = characterData["stories"]["available"]
   thumbnailPath = characterData["thumbnail"]["path"]
+  url = characterData["urls"][1]["url"]
 
-  Character.create({name: name, character_id: characterID, comics: comics, series: series, stories: stories, thumbnail_path: thumbnailPath})
+  Character.create({name: name, character_id: characterID, comics: comics, series: series, stories: stories, thumbnail_path: thumbnailPath, url: url})
 
 end
