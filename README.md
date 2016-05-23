@@ -1,5 +1,3 @@
-== README
-
 Here are some of the choices I made in completing this project:
 
 I accessed the Marvel API data using the HTTParty gem. I used the Figaro gem to hide my API key.
