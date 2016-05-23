@@ -1,7 +1,7 @@
 class Character < ActiveRecord::Base
 
   def self.charactersHash
-    Character.all.each_with_object({}) do |character, hash|
+    @character_hash ||= Character.all.each_with_object({}) do |character, hash|
       name = character.name.split.map(&:capitalize).join(' ').split('-').map(&:titleize).join('-')
       hash[name] = {characterID: character.character_id, comics: character.comics, series: character.series, stories: character.stories, events: character.characterEventsArray, thumbnailPath: character.thumbnail_path, info: character.url}
     end
