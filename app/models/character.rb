@@ -1,32 +1,33 @@
 class Character < ActiveRecord::Base
 
   def self.charactersHash
-    characters = {}
-    Character.all.each do |character|
+    Character.all.each_with_object({}) do |character, hash|
       name = character.name.split.map(&:capitalize).join(' ').split('-').map(&:titleize).join('-')
-      characters[name] = {characterID: character.character_id, comics: character.comics, series: character.series, stories: character.stories, events: character.characterEventsArray, thumbnailPath: character.thumbnail_path, info: character.url }
+      hash[name] = {characterID: character.character_id, comics: character.comics, series: character.series, stories: character.stories, events: character.characterEventsArray, thumbnailPath: character.thumbnail_path, info: character.url}
     end
-    characters
   end
 
   def self.sortedByValue(value)
-    sortedHash = {}
     sortedData = charactersHash.sort_by { |name, data| data[value] }.reverse
-    sortedData.each do |name, data|
-      sortedHash[name] = {}
-      sortedHash[name]["value"] = data[value]
-      sortedHash[name]["imageURL"] = "#{data[:thumbnailPath]}/standard_medium.jpg"
-      sortedHash[name]["info"] = data[:info]
+    sortedData.each_with_object({}) do |(name, data), sortedHash|
+      sortedHash[name] = {"value": data[value], "imageURL": "#{data[:thumbnailPath]}/standard_medium.jpg", "info": data[:info]}
     end
-    sortedHash
   end
 
   def self.allEvents
-    allEventsArray = []
-    charactersHash.each do |character|
-      allEventsArray << character.last[:events]
+    charactersHash.each_with_object([]) do |character, array|
+      array << character.last[:events]
     end
-    allEventsArray
+  end
+
+  def self.commonEvents
+    allEvents.inject(:&)
+  end
+
+  def self.allEvents
+    charactersHash.each_with_object([]) do |character, array|
+      array << character.last[:events]
+    end
   end
 
   def self.commonEvents
@@ -34,11 +35,9 @@ class Character < ActiveRecord::Base
   end
 
   def self.chartData
-    chartHash = {}
-    charactersHash.each do |name, data|
+    charactersHash.each_with_object({}) do |(name, data), chartHash|
       chartHash[name] = data[:series]
     end
-    chartHash
   end
 
   def getCharacterEvents

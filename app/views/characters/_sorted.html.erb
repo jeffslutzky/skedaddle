@@ -15,12 +15,12 @@
         <tr>
           <td><%= i %></td>
           <td>
-            <%= link_to data["info"] do %>
+            <%= link_to data[:info] do %>
               <%= name %><br />
-              <img src="<%= data["imageURL"] %>">
+              <img src="<%= data[:imageURL] %>">
             <% end %>
           </td>
-          <td><%= data["value"] %></td>
+          <td><%= data[:value] %></td>
         </tr>
       <% end %>
     </tbody>
