@@ -21,6 +21,7 @@ class Character < ActiveRecord::Base
   end
 
   def self.commonEvents
+    binding.pry
     allEvents.inject(:&)
   end
 
