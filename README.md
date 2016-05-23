@@ -8,7 +8,7 @@ I seeded the database with the API data, so the database is preloaded, and the m
 
 Since I was going to be accessing the character data hash several times, I used conditional assignment to an instance variable (@characterHash ||= etc.) in the self.charactersHash class method. That way, if the hash is already populated with data, the method doesn't need to access the database again. This speeds things up immensely.
 
-I created a partial (_sorted.html.erb) to hold the code for a sorted table, and in the view I loop through the partial to load sorted tables for comics, series, and stories. This makes my code more DRY.
+I created a partial (\_sorted.html.erb) to hold the code for a sorted table, and in the view I loop through the partial to load sorted tables for comics, series, and stories. This makes my code more DRY.
 
 For common events, I made a nested array of everyone's events (self.allEvents), and then created a separate class method to find the events common to all arrays in the nested array (self.commonEvents).
 
