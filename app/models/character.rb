@@ -24,16 +24,6 @@ class Character < ActiveRecord::Base
     allEvents.inject(:&)
   end
 
-  def self.allEvents
-    charactersHash.each_with_object([]) do |character, array|
-      array << character.last[:events]
-    end
-  end
-
-  def self.commonEvents
-    allEvents.inject(:&)
-  end
-
   def self.chartData
     charactersHash.each_with_object({}) do |(name, data), chartHash|
       chartHash[name] = data[:series]
